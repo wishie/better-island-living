@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Word Replacer - Bridge to Chocolate Milk",
-  "version": "2.0",
+  "name": "Better Island Living",
+  "version": "2.2",
   "description": "Replace words/phrases with whatever you want. Configurable, with defaults.",
   "permissions": [
     "storage"
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Word Replacer"
+    "default_title": "Better Island Living"
   },
   "options_page": "options.html",
   "content_scripts": [

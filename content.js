@@ -1,9 +1,10 @@
-// Word Replacer v2 - configurable mappings from chrome.storage.sync
+// Better Island Living v2 - configurable mappings from chrome.storage.sync
 const DEFAULTS = [
-  { from: "Car Parking", to: "Fairy Floss" },
-  { from: "Car Park", to: "Fairy Floss" },
-  { from: "Parking", to: "Fairy Floss" },
-  { from: "Bridge", to: "Chocolate Milk" }
+  // enabled defaults to true - see normalize()
+  { from: "Car Parking", to: "Fairy Floss", enabled: true },
+  { from: "Car Park", to: "Fairy Floss", enabled: true },
+  { from: "Parking", to: "Fairy Floss", enabled: true },
+  { from: "Bridge", to: "Chocolate Milk", enabled: true }
 ];
 
 let mappings = [...DEFAULTS];
@@ -11,8 +12,11 @@ let mappings = [...DEFAULTS];
 function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
 // Longest phrase first, so "Car Parking" wins over "Parking" / "Car Park"
+function normalize(list){
+  return (list||[]).map(m=>({from:(m.from||"").trim(), to:(m.to||"").trim(), enabled: m.enabled!==false}));
+}
 function sortedMappings(){
-  return [...mappings].filter(m => m.from && m.to).sort((a,b)=> b.from.length - a.from.length);
+  return normalize(mappings).filter(m => m.from && m.to && m.enabled).sort((a,b)=> b.from.length - a.from.length);
 }
 
 function preserveCase(match, replacement){
@@ -68,7 +72,7 @@ function replaceAll(){
 async function load(){
   try{
     const data = await chrome.storage.sync.get(["mappings"]);
-    if (Array.isArray(data.mappings) && data.mappings.length) mappings = data.mappings;
+    if (Array.isArray(data.mappings) && data.mappings.length) mappings = normalize(data.mappings);
     else { mappings = [...DEFAULTS]; chrome.storage.sync.set({mappings}); }
   }catch(e){ mappings = [...DEFAULTS]; }
   replaceAll();

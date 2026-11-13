@@ -1,6 +1,13 @@
-const DEFAULTS=[{from:"Bridge",to:"Chocolate Milk"},{from:"Car Park",to:"Fairy Floss"},{from:"Car Parking",to:"Fairy Floss"},{from:"Parking",to:"Fairy Floss"}];
+const DEFAULTS=[{from:"Bridge",to:"Chocolate Milk",enabled:true},{from:"Car Park",to:"Fairy Floss",enabled:true},{from:"Car Parking",to:"Fairy Floss",enabled:true},{from:"Parking",to:"Fairy Floss",enabled:true}];
 chrome.storage.sync.get(["mappings"],({mappings})=>{
   const list=(mappings&&mappings.length)?mappings:DEFAULTS;
-  document.getElementById("list").innerHTML=list.map(m=>`<div class="item"><b>${m.from}</b> → ${m.to}</div>`).join("");
+  const el=document.getElementById("list");
+  el.innerHTML=list.map((m,i)=>`<div class="item"><label><input type="checkbox" data-i="${i}" ${m.enabled!==false?"checked":""}> <b>${m.from}</b> → ${m.to}</label></div>`).join("");
+  el.querySelectorAll("input").forEach(cb=>cb.onchange=async()=>{
+    const {mappings}=await chrome.storage.sync.get(["mappings"]);
+    const cur=(mappings&&mappings.length)?mappings:list;
+    cur[+cb.dataset.i].enabled=cb.checked;
+    await chrome.storage.sync.set({mappings:cur});
+  });
 });
 document.getElementById("open").onclick=()=>chrome.runtime.openOptionsPage();

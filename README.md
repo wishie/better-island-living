@@ -1,4 +1,4 @@
-# Word Replacer v2
+# Better Island Living v2.1
 Configurable replacements. Defaults:
 - Bridge -> Chocolate Milk
 - Car Park -> Fairy Floss
@@ -18,3 +18,6 @@ Reset to defaults button restores the 4 defaults above.
 - Case preserved: bridge->chocolate milk, Bridge->Chocolate Milk, BRIDGE->CHOCOLATE MILK
 - Plurals: Bridges -> Chocolate Milks, Car Parks -> Fairy Flosses
 - Stored in chrome.storage.sync, so it syncs across your Chrome profiles.
+
+## Toggles
+Each replacement has an on/off toggle (default: on). Turn one off in Options or in the popup - it stops applying instantly, without deleting it. Disabled rows are greyed out. Old saved settings without a toggle are treated as on.
