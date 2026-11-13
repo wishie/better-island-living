@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Bridge to Chocolate Milk",
+  "version": "1.0",
+  "description": "Replaces every instance of the word 'bridge' with 'chocolate milk'.",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "128": "icon128.png"
+  }
+}
