@@ -1,20 +1,20 @@
-# Bridge to Chocolate Milk - Chrome Extension
-
-## Install (Developer Mode)
-1. Open Chrome -> chrome://extensions/
-2. Turn on **Developer mode** (top right)
-3. Click **Load unpacked**
-4. Select the folder containing these files
-5. Visit any site - every "bridge" becomes "chocolate milk"
-
-## Files
-- manifest.json - Manifest V3 config
-- content.js - Does the replacing, watches for new content loading in
-
-## What it does
-- bridge -> chocolate milk
+# Word Replacer v2
+Configurable replacements. Defaults:
 - Bridge -> Chocolate Milk
-- BRIDGE -> CHOCOLATE MILK
-- bridges -> chocolate milks
-- Also updates the page title
-- Skips <script>, <style>, <input>, <textarea> so it won't break sites
+- Car Park -> Fairy Floss
+- Car Parking -> Fairy Floss
+- Parking -> Fairy Floss
+
+## Install
+chrome://extensions > Developer mode > Load unpacked > select this folder
+
+## Configure
+Click extension icon > Edit replacements, or right-click > Options.
+Add / edit / delete rows, Save. Changes apply live to open tabs.
+Reset to defaults button restores the 4 defaults above.
+
+## How it works
+- Longest phrase first (Car Parking beats Parking)
+- Case preserved: bridge->chocolate milk, Bridge->Chocolate Milk, BRIDGE->CHOCOLATE MILK
+- Plurals: Bridges -> Chocolate Milks, Car Parks -> Fairy Flosses
+- Stored in chrome.storage.sync, so it syncs across your Chrome profiles.

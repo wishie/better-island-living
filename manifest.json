@@ -1,9 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "Bridge to Chocolate Milk",
-  "version": "1.0",
-  "description": "Replaces every instance of the word 'bridge' with 'chocolate milk'.",
-  "permissions": [],
+  "name": "Word Replacer - Bridge to Chocolate Milk",
+  "version": "2.0",
+  "description": "Replace words/phrases with whatever you want. Configurable, with defaults.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Word Replacer"
+  },
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": [
