@@ -1,4 +1,4 @@
-# Better Island Living v2.1
+# Better Island Living v2.2
 Configurable replacements. Defaults:
 - Bridge -> Chocolate Milk
 - Car Park -> Fairy Floss
@@ -21,3 +21,6 @@ Reset to defaults button restores the 4 defaults above.
 
 ## Toggles
 Each replacement has an on/off toggle (default: on). Turn one off in Options or in the popup - it stops applying instantly, without deleting it. Disabled rows are greyed out. Old saved settings without a toggle are treated as on.
+
+## Icon
+New icon: tiny island + glass of chocolate milk + pink fairy floss. Sizes: icon16/32/48/128.png (see manifest `icons`).
